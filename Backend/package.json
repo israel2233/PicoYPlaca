@@ -1,0 +1,25 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "This is the backend solution for 'Pico y Placa' exercise",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tsc": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/israel2233/PicoYPlaca.git"
+  },
+  "author": "Israel Montalvo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/israel2233/PicoYPlaca/issues"
+  },
+  "homepage": "https://github.com/israel2233/PicoYPlaca#readme",
+  "dependencies": {
+    "@types/express": "^4.17.7",
+    "express": "^4.17.1",
+    "typescript": "^3.9.7"
+  }
+}
