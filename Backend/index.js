@@ -8,8 +8,15 @@ var app = express();
 var resp;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.post('/s', function (req, res) {
-    console.log(req.body);
+app.use(function (req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+    res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+    next();
+});
+app.post('/', function (req, res) {
+    console.log(req);
     var picoYPlaca = new model.PicoYPlaca(req.body.placa, req.body.date, req.body.time);
     try {
         if (picoYPlaca.determinateCirculation()) {

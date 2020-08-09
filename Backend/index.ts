@@ -6,8 +6,14 @@ const app: express.Application = express();
 let resp:model.Responses
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+app.use((req, res, next) => {//Se usan cabeceras CORS
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+    res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+    next();
+});
 app.post('/',(req, res)=>{
-    console.log(req.body)
     let picoYPlaca=new model.PicoYPlaca(req.body.placa,req.body.date,req.body.time)
     try {
         if(picoYPlaca.determinateCirculation()){
@@ -16,8 +22,6 @@ app.post('/',(req, res)=>{
             response.success(res,'Se puede circular',200)
         }
     } catch (error) {
-        console.log(error)
-        console.log(model.errors)
         response.error(res,model.errors[error],400)
     }
 })

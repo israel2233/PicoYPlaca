@@ -1,0 +1,51 @@
+<form [formGroup]="ngForm" (ngSubmit)='detPicoYPlaca()'>
+    <div class="text-center">
+        <label>
+            <h1>Welcome!</h1>
+        </label><br>
+        <label>
+            <h3>Here you can find out if your car can circulate in the city!</h3>
+        </label>
+    </div>
+
+    <div class="form-group">
+        <div class="d-flex justify-content-center">
+            <div class="col-3">
+                <label>Placa</label>
+                <input type="text" formControlName="placa" class="form-control" placeholder="Ex:8670 (Numbers only)">
+                <div class="validation-error">
+                    <ng-container *ngFor="let validation of validation_messages.placa">
+                      <div *ngIf="ngForm.get('placa').hasError(validation.type)&&
+                      (ngForm.get('placa').dirty ||ngForm.get('placa').touched)">
+                          {{validation.message}}
+                      </div>
+                    </ng-container>
+                </div>
+                <label>Date</label>
+                <input type="text" formControlName="date" class="form-control" placeholder="dd/MM/YYYY">
+                <div class="validation-error">
+                    <ng-container *ngFor="let validation of validation_messages.date">
+                      <div *ngIf="ngForm.get('date').hasError(validation.type)&&
+                      (ngForm.get('date').dirty ||ngForm.get('date').touched)">
+                          {{validation.message}}
+                      </div>
+                    </ng-container>
+                </div>
+                <label>Hour</label>
+                <input type="text" formControlName="hour" class="form-control" placeholder="HH:mm">
+                <div class="validation-error">
+                    <ng-container *ngFor="let validation of validation_messages.hour">
+                      <div *ngIf="ngForm.get('hour').hasError(validation.type)&&
+                      (ngForm.get('hour').dirty ||ngForm.get('hour').touched)">
+                          {{validation.message}}
+                      </div>
+                    </ng-container>
+                </div><br>
+                <button [disabled]="!ngForm.valid" type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+
