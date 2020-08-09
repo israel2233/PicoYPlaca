@@ -16,7 +16,6 @@ app.use(function (req, res, next) {
     next();
 });
 app.post('/', function (req, res) {
-    console.log(req);
     var picoYPlaca = new model.PicoYPlaca(req.body.placa, req.body.date, req.body.time);
     try {
         if (picoYPlaca.determinateCirculation()) {
@@ -27,8 +26,6 @@ app.post('/', function (req, res) {
         }
     }
     catch (error) {
-        console.log(error);
-        console.log(model.errors);
         response.error(res, model.errors[error], 400);
     }
 });

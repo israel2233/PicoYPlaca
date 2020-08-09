@@ -4,8 +4,8 @@ var services = require("../services/picoPlacaService");
 var chai_1 = require("chai");
 describe('Services test', function () {
     it('Check date format test 1', function () {
-        var date = services.getDateFormat('10/11/202*');
-        chai_1.expect(date).to.be.eql(new Date(-1));
+        var date = services.getDateFormat('10/11/2020*');
+        chai_1.expect(date).to.be.eql(new Date(2020, 10, 10));
     });
     it('Check date format test 2', function () {
         var date = services.getDateFormat('10/11/202');
@@ -40,7 +40,7 @@ describe('Services test', function () {
         chai_1.expect(services.getLastNumberPlaca('1234')).to.be.equal(4);
     });
     it('Determine last number of "Placa" 2', function () {
-        chai_1.expect(services.getLastNumberPlaca('123&')).to.be.eql(NaN);
+        chai_1.expect(services.getLastNumberPlaca('5618')).to.be.equal(8);
     });
     it('Determine last number of "Placa" 3', function () {
         chai_1.expect(services.getLastNumberPlaca('8530')).to.be.eql(0);

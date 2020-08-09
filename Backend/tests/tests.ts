@@ -3,8 +3,8 @@ import {expect} from'chai'
 
 describe('Services test',()=>{
     it('Check date format test 1',()=>{
-        let date=services.getDateFormat('10/11/202*')
-        expect(date).to.be.eql(new Date(-1))
+        let date=services.getDateFormat('10/11/2020*')
+        expect(date).to.be.eql(new Date(2020,10,10))
 
     })
     it('Check date format test 2',()=>{
@@ -41,7 +41,8 @@ describe('Services test',()=>{
         expect(services.getLastNumberPlaca('1234')).to.be.equal(4)
     })
     it('Determine last number of "Placa" 2',()=>{
-        expect(services.getLastNumberPlaca('123&')).to.be.eql(NaN)
+        expect(services.getLastNumberPlaca('5618')).to.be.equal(8)
+        
     })
     it('Determine last number of "Placa" 3',()=>{
         expect(services.getLastNumberPlaca('8530')).to.be.eql(0)
