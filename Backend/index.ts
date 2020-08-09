@@ -17,9 +17,9 @@ app.post('/',(req, res)=>{
     let picoYPlaca=new model.PicoYPlaca(req.body.placa,req.body.date,req.body.time)
     try {
         if(picoYPlaca.determinateCirculation()){
-            response.success(res,'No se puede circular',200)
+            response.success(res,"Can't road",200)
         }else{
-            response.success(res,'Se puede circular',200)
+            response.success(res,'Can road',200)
         }
     } catch (error) {
         response.error(res,model.errors[error],400)
