@@ -1,11 +1,16 @@
 export function getDateFormat(date:string){
-    var day=Number(date.substr(0,2));
-    var month=Number(date.substr(3,2));
-    var year=Number(date.substr(6,4))
-    return new Date(year, month, day)
+    const day=Number(date.substr(0,2));
+    const month=Number(date.substr(3,2));
+    const year=Number(date.substr(6,4));
+    if(isNaN(day)||isNaN(month)||isNaN(year)){
+        throw 2;
+    }else{
+        return new Date(year, month-1, day)
+    }
+    
 }
 
-export function determinateDateEarlier(date:Date){
+export function determineDateEarlier(date:Date){
     if(date<new Date()){
         return false;
     }
@@ -19,16 +24,23 @@ export function getDayOfWeek(date:Date){
 }
 
 export function getLastNumberPlaca(placa:string){
+    if(isNaN(Number(placa))){
+       throw 4;
+    }
     return Number(placa.substr(placa.length-1))
 }
 
 export function detHour(hour:string){
+    var hh=Number(hour.substr(0,2));
+    var mm=Number(hour.substr(3,2));
+    if(isNaN(hh)||isNaN(mm)){
+        throw 3
+    }
     var hour1 = new Date(0,0,0,7,0);
     var hour2 = new Date(0,0,0,9,30);
     var hour3 = new Date(0,0,0,16,0);
     var hour4 = new Date(0,0,0,19,30);
-    var hh=Number(hour.substr(0,2));
-    var mm=Number(hour.substr(3,2));
+    
     var hourUser=new Date(0,0,0,hh,mm);
     if (hourUser >= hour1 && hourUser <= hour2  ) {
         return true;
@@ -41,12 +53,13 @@ export function detHour(hour:string){
 
 }
 
-export function determinatePicoYPlaca(placa:string,date:string,hour:string){
-    const day:string=getDayOfWeek(getDateFormat(date));
-    const lastnumber=getLastNumberPlaca(placa);
-    type picoPlaca={
-        [key:string]:Array<Number>
+export function determinePicoYPlaca(placa:string,date:string,hour:string){
+    let datef = getDateFormat(date);
+    if(!determineDateEarlier(datef)){
+        throw  1;
     }
+    const day:string=getDayOfWeek(datef);
+    const lastnumber=getLastNumberPlaca(placa);
 
     const pico:{[key:string]:Array<Number>}={
         Monday:[1,2],
@@ -55,13 +68,13 @@ export function determinatePicoYPlaca(placa:string,date:string,hour:string){
         Thursday:[7,8],
         Friday:[9,0],
         Saturday:[],
-        Sunday:[]}
+        Sunday:[]
+    }
 
-    
-
-    if(pico[day] && detHour(hour) && pico[day].indexOf(lastnumber)!=1){
+    if(pico[day] && detHour(hour) && pico[day].indexOf(lastnumber)!=-1){
         return true;
     }else{
         return false;
     }
 };
+determinePicoYPlaca('860',"12/11/2020",'15:30')

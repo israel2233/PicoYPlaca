@@ -1,6 +1,6 @@
 import service=require('../services/picoPlacaService')
 
-class Placa{
+export class PicoYPlaca{
     private placa:string;
     private date:string;
     private time:string;
@@ -11,8 +11,25 @@ class Placa{
     }
 
     determinateCirculation(){
-        service.determinatePicoYPlaca(this.placa,this.date,this.time)
-        
+        return service.determinePicoYPlaca(this.placa,this.date,this.time)
     }
+
+}
+
+export type Requests={
+    placa:string,
+    date:string,
+    hour:string
+}
+export interface Responses{
+    message:string,
+    error:string
+}
+
+export const errors:{[key:number]:string}={
+    1:'The date is earlier!',
+    2:'The date is invalid',
+    3:'The hour is invalid',
+    4:'"Placa" is Incorrect!',
 
 }
