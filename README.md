@@ -1,16 +1,17 @@
 # PicoYPlaca
 This repository contains the backend and frontend of a web application that allows to know if a car can road with the "Pico y Placa".
 
-Backend: Node.js with TypeScript
-open the "Backend" folder and run the code: 
+Backend: Node.js with TypeScript. 
+
+Open the "Backend" folder and run the commands: 
 
     >>npm install
-    >>npm test : for the test's application
+    >>npm test : for the application tests
     >>npm start : for run the web service
 
 Frontend: Angular
 
-Open the "Frontend" folder and run the code:
+Open the "Frontend" folder and run the commands:
 
     >>ng serve
 
